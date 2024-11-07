@@ -2,7 +2,8 @@
 import { useState } from 'react';
 import { Amplify } from 'aws-amplify';
 import { SignUpInput, SignUpOutput, signUp } from 'aws-amplify/auth';
-import awsExports from '../../src/aws-exports'; // Path to your aws-exports file
+import awsExports from '../../src/aws-export'; // Path to your aws-exports file
+import { useRouter } from 'next/navigation';
 Amplify.configure(awsExports);
 
 export default function Signup() {
@@ -10,7 +11,7 @@ export default function Signup() {
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
-
+  const router = useRouter();
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -21,6 +22,7 @@ export default function Signup() {
     try {
       await signUp({ username: email, password });
       console.log('Signup successful! Please confirm your email.');
+      router.push('/verify');
     } catch (err) {
       setError((err as Error).message);
     }

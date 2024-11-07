@@ -2,14 +2,15 @@
 import { useState } from 'react';
 import { confirmSignUp } from 'aws-amplify/auth'; // Direct import of confirmSignUp function
 import { Amplify } from 'aws-amplify';
-import awsExports from '../../src/aws-exports'
+import { useRouter } from 'next/navigation';
+import awsExports from '../../src/aws-export'
 Amplify.configure(awsExports);
 export default function VerifyAccount() {
   const [email, setEmail] = useState<string>('');
   const [code, setCode] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
-
+  const router =  useRouter();
   const handleVerification = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -19,6 +20,7 @@ export default function VerifyAccount() {
       // Using an object for the confirmSignUp function
       await confirmSignUp({ username: email, confirmationCode: code });
       setSuccess('Account verified successfully! You can now log in.');
+      router.push("/login")
     } catch (err) {
       setError((err as Error).message || 'Failed to verify account.');
     }

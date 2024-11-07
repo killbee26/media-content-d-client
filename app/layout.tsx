@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Amplify } from 'aws-amplify';
-import awsconfig from '../src/aws-exports';
+import awsconfig from '../src/aws-export';
 
 Amplify.configure(awsconfig);
 

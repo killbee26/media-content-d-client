@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { signIn, SignInInput } from '@aws-amplify/auth';  // Import signIn and SignInInput
 import { Amplify } from 'aws-amplify';
-import awsExports from '../../src/aws-exports'; // Path to your aws-exports file
+import awsExports from '../../src/aws-export'; // Path to your aws-exports file
 import { useRouter } from 'next/navigation';
 Amplify.configure(awsExports);
 export default function Login() {
