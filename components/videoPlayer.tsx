@@ -26,7 +26,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoData }) => {
 
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const playerRef = React.useRef<HTMLDivElement>(null);
-
+  const uploadDate = videoData.uploadDate;
+  console.log("uploadDate: ",uploadDate);
   useEffect(() => {
     setVideoSrc(videoData.processedUrls[selectedQuality]);
   }, [selectedQuality, videoData.processedUrls]);
