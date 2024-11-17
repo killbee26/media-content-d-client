@@ -47,7 +47,7 @@ export default function Admin() {
     onDrop,
     noClick: true,
     noKeyboard: true,
-    accept: '.mp4, .avi, .mov, .wmv, .flv, .mkv', // Restrict to specific video file types
+     // Restrict to specific video file types
   });
 
   const handleUpload = async () => {
